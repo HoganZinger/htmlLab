@@ -57,6 +57,8 @@ public class Main {
                         break;
                     }
                 case "read":
+                    // editor = read_from_file
+                    isInitialized = true;
                     break;
                 case "save":
                     if(!isInitialized) {
