@@ -1,12 +1,21 @@
 package Commands;
 
-import Elements.HtmlElement;
+import Utils.*;
+import java.util.Objects;
 
 public class InitCommand implements Command {
 
+    @Override
     public void execute() {
-        HtmlElement root = initializeEditor();
-        System.out.println(root.toHtml());
+        HtmlContext htmlContext = HtmlContext.getInstance();
+        if (Objects.equals(htmlContext.getHtmlContent().getId(), "empty")){
+            htmlContext.setHtmlContent(initializeEditor());
+            System.out.println("initialized html root");
+            System.out.println(htmlContext.getHtmlContent().toString());
+        }
+        else{
+            System.out.println("found existing html, no need to initialize");
+        }
     }
 
     private HtmlElement initializeEditor() {

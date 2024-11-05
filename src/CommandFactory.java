@@ -1,5 +1,5 @@
 import Commands.Command;
-import Models.InitModel;
+import Models.*;
 
 public class CommandFactory {
     public static Command createCommand(String commandType, String[] commandArgs){

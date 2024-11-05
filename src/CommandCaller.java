@@ -1,6 +1,7 @@
 import Commands.Command;
 
 public class CommandCaller {
+
     private static String[] splitInput(String input){
         return input.split(" ");
     }

@@ -1,4 +1,4 @@
-package Elements;
+package Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,10 @@ public class HtmlElement {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     public void setText(String text) {
