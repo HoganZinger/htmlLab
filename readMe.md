@@ -14,7 +14,8 @@
 6. Models: 对指令实现进行封装
 7. Utils: HTML对象的抽象定义、简单操作；HTML缓冲区
 
-## 2. 注意事项
-1. 目前的CommandAnalyzer基于简单的布尔判断，因此若没有init而直接read，会出现NullPointerException，在read命令模块编写完成后应该会解决
-2. HTML缓冲区基于单例模式，各命令使用getInstance()方法获取HTML实例，保证唯一性。方法getHtmlContent()用于获取内容，缓冲区中HTML对象的id为”empty"代表还未初始化
-3. 为了体现设计模式，实现基础指令需要新建对应的Commands类、Models类，并在CommandFactory中进行调用就可接入系统
+## 2. 编写注意事项
+1. 目前已完成init指令的编写，各命令基于HTML缓冲区共享HTML内容
+2. HTML缓冲区基于单例模式，各命令使用getInstance()方法获取HTML实例，保证唯一性。
+3. 编辑器启动时，缓冲区为一个id为”empty"的HtmlElement；可以使用方法getHtmlContent()用于获取缓冲区内容。
+4. 为了体现设计模式，实现基础指令需要新建对应的Commands类、Models类，并在CommandFactory中进行调用就可接入系统

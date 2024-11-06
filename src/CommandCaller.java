@@ -20,16 +20,23 @@ public class CommandCaller {
 
     public void executeCommand(String input) {
         switch (input) {
-            case "uninitialized":
+            case "uninitialized": {
                 System.out.println("Uninitialized! Use init or read first");
                 break;
-            case "unknown":
+            }
+            case "unknown": {
                 System.out.println("Unknown command!");
                 break;
-            default:
-                Command command = createCommand(input);
-                command.execute();
-                break;
-        }
+            }
+            default: {
+                try{
+                    Command command = createCommand(input);
+                    command.execute();
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        };
     }
 }
