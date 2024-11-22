@@ -53,6 +53,18 @@ public class HtmlElement {
         return html.toString();
     }
 
+    public String getTagName() {
+        return tagName;
+    }
+
+    public List<HtmlElement> getChildren() {
+        return children;
+    }
+
+    public String getTextContent() {
+        return textContent;
+    }
+
     @Override
     public String toString() {
         return toHtml();
