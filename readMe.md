@@ -19,3 +19,11 @@
 2. HTML缓冲区基于单例模式，各命令使用getInstance()方法获取HTML实例，保证唯一性。
 3. 编辑器启动时，缓冲区为一个id为”empty"的HtmlElement；可以使用方法getHtmlContent()用于获取缓冲区内容。
 4. 为了体现设计模式，实现基础指令需要新建对应的Commands类、Models类，并在CommandFactory中进行调用就可接入系统
+
+## 3. 关于测试
+测试的类是EditorTester
+由于测试进程无法访问编辑器进程的存储空间，目前采用的交互方式是由编辑器进程输出缓冲区内容，在测试类完成判断
+如果运行不成功可能是因为路径问题,ProcessBuilder默认是从工作目录下面拼接路径，如我的工作路径是Lab1/lab
+所以我的编译文件夹out放在lab文件夹下
+![img.png](img.png)
+![img_1.png](img_1.png)

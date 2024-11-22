@@ -7,11 +7,11 @@ public class CommandAnalyzer {
 
     public String createCommand(String input) {
         String HtmlId = HtmlContext.getInstance().getHtmlContent().getId();
-
-        return switch (input) {
+        String command = input.split(" ")[0];
+        return switch (command) {
             case "init", "read" -> {
                 isInitialized = true;
-                yield input;
+                yield command;
             }
             case "insert", "append", "edit-text", "delete", "print-indent", "print-tree", "save", "undo", "redo" -> {
                 if (Objects.equals(HtmlId, "empty")){
@@ -20,7 +20,7 @@ public class CommandAnalyzer {
                 if (!isInitialized) {
                     yield "uninitialized";
                 }
-                yield input;
+                yield command;
             }
             default -> "unknown";
         };

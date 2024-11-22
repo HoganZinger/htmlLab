@@ -12,9 +12,11 @@ public class InitCommand implements Command {
             htmlContext.setHtmlContent(initializeEditor());
             System.out.println("initialized html root");
             System.out.println(htmlContext.getHtmlContent().toString());
+            System.out.flush();
         }
         else{
             System.out.println("found existing html, no need to initialize");
+            System.out.flush();
         }
     }
 
