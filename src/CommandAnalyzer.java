@@ -11,7 +11,7 @@ public class CommandAnalyzer {
         return switch (command) {
             case "init", "read" -> {
                 isInitialized = true;
-                yield command;
+                yield input;
             }
             case "insert", "append", "edit-text", "delete", "print-indent", "print-tree", "save", "undo", "redo" -> {
                 if (Objects.equals(HtmlId, "empty")){
@@ -20,7 +20,7 @@ public class CommandAnalyzer {
                 if (!isInitialized) {
                     yield "uninitialized";
                 }
-                yield command;
+                yield input;
             }
             default -> "unknown";
         };
