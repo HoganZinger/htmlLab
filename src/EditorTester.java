@@ -11,8 +11,7 @@ public class EditorTester {
     @BeforeEach
     public void setUp() throws IOException {
         // 启动编辑器进程
-        System.out.println("1");
-        ProcessBuilder processBuilder = new ProcessBuilder("java", "-cp", "out/production/htmlLab", "Main");
+        ProcessBuilder processBuilder = new ProcessBuilder("java", "-cp", "out/production/lab", "Main");
         processBuilder.redirectErrorStream(true); // 将标准错误合并到标准输出
         editorProcess = processBuilder.start();
     }
