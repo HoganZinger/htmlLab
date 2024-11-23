@@ -2,12 +2,10 @@ import Commands.Command;
 import Commands.RedoCommand;
 import Commands.TestCommand;
 import Commands.UndoCommand;
-<<<<<<< HEAD
 import Commands.ReadCommand;
 import Commands.SaveCommand;
-=======
 import Commands.PrintTreeCommand;
->>>>>>> cc4bcffff0979496213e6c9c755695b4ff32c2ef
+
 import Models.*;
 import Utils.StateSavingCommandDecorator;
 

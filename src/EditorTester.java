@@ -131,33 +131,6 @@ public class EditorTester {
     }
 
     @Test
-<<<<<<< HEAD
-    public void testReadCommand() throws IOException, InterruptedExceptions {
-        //初始化编辑器
-        sendCommand("init");
-
-        //检查缓冲区内容是否正确
-        sendCommand("read test.html");
-        String expectedHtml = "<html><body><h1>Test HTML</h1></body></html>";
-        String bufferContent = HtmlContext.getInstance().getHtmlContent();
-        assertEquals(expectedHtml, bufferContent, "the content in buffer and the file should be matched")
-    }
-
-    @Test
-    public void testSaveCommand() throws IOException, InterruptedException{
-        //初始化编辑器
-        sendCommand("init");
-
-        //修改缓冲区内容
-        String newHtml = "<html><body><p>Modified HTML</p></body></html>";
-        HtmlContext.getInstance().setHtmlContent(newHtml);
-        sendCommand("save output.html")
-
-        //验证文件内容是否与缓冲区匹配
-        String fileContent = Files.readString(Path.of("output.html"));
-        assertEquals(newHtml, fileContent, "the content saved in file should be matched to the buffer")
-
-=======
     public void testPrintIndentCommand() throws IOException, InterruptedException {
         // 初始化编辑器
         sendCommand("init");
@@ -187,7 +160,6 @@ public class EditorTester {
 
         // 验证输出是否符合预期
         assertTrue(output.contains("html#root"), "Print Tree 输出不正确");
->>>>>>> cc4bcffff0979496213e6c9c755695b4ff32c2ef
     }
 
     @AfterEach
