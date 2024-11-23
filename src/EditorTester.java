@@ -2,6 +2,9 @@ import Utils.HtmlContext;
 import org.junit.jupiter.api.*;
 import java.io.*;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EditorTester {
@@ -126,6 +129,34 @@ public class EditorTester {
         String afterUndoState = getOutput();
         assertEquals(initialState, afterUndoState,
                 "State should be consistent after undo");
+    }
+
+    @Test
+    public void testReadCommand() throws IOException, InterruptedExceptions {
+        //初始化编辑器
+        sendCommand("init");
+
+        //检查缓冲区内容是否正确
+        sendCommand("read test.html");
+        String expectedHtml = "<html><body><h1>Test HTML</h1></body></html>";
+        String bufferContent = HtmlContext.getInstance().getHtmlContent();
+        assertEquals(expectedHtml, bufferContent, "the content in buffer and the file should be matched")
+    }
+
+    @Test
+    public void testSaveCommand() throws IOException, InterruptedException{
+        //初始化编辑器
+        sendCommand("init");
+
+        //修改缓冲区内容
+        String newHtml = "<html><body><p>Modified HTML</p></body></html>";
+        HtmlContext.getInstance().setHtmlContent(newHtml);
+        sendCommand("save output.html")
+
+        //验证文件内容是否与缓冲区匹配
+        String fileContent = Files.readString(Path.of("output.html"));
+        assertEquals(newHtml, fileContent, "the content saved in file should be matched to the buffer")
+
     }
 
     @AfterEach
