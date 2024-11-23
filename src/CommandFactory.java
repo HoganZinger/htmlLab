@@ -2,6 +2,7 @@ import Commands.Command;
 import Commands.RedoCommand;
 import Commands.TestCommand;
 import Commands.UndoCommand;
+import Commands.PrintTreeCommand;
 import Models.*;
 import Utils.StateSavingCommandDecorator;
 
@@ -16,6 +17,10 @@ public class CommandFactory {
                 return new RedoCommand();
             case "test":
                 return new StateSavingCommandDecorator(new TestCommand(commandArgs));
+            case "print-tree":
+                return new PrintTreeModel();
+            case "print-indent":
+                return new PrintIndentModel(commandArgs);
             default:
                 return null;
         }
