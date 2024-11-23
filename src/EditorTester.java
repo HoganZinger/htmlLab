@@ -125,7 +125,9 @@ public class EditorTester {
         String afterUndoState = getOutput();
         assertEquals(initialState, afterUndoState,
                 "State should be consistent after undo");
+    }
 
+    @Test
     public void testPrintIndentCommand() throws IOException, InterruptedException {
         // 初始化编辑器
         sendCommand("init");
