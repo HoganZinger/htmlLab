@@ -11,8 +11,7 @@ public class SaveModel implements Command {
     }
 
     public void execute() {
-        SaveCommand command = new SaveCommand();
-        String filepath = commandArgs[0];
-        command.execute(filepath);
+        SaveCommand command = new SaveCommand(commandArgs);
+        command.execute();
     }
 }

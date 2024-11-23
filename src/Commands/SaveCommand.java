@@ -2,22 +2,26 @@ package Commands;
 
 import Utils.HtmlContext;
 import Utils.HtmlElement;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class SaveCommand implements Command {
+    private String[] filepath;
+
+    public SaveCommand(String[] filepath) {
+        this.filepath = filepath;
+    }
 
     @Override
-    pubilc void execute(String[] args) {
-        if(args.length < 1) {
+    public void execute() {
+
+        if(filepath.length < 1) {
             System.out.println("Empty path!");
-            return;
         }
 
-        String fileName = args[0];
-        String htmlcontent = HtmlContext.getInstance().getHtmlContent();
+        String fileName = filepath[0];
+        String htmlcontent = HtmlContext.getInstance().getHtmlContent().getTextContent();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             writer.write(htmlcontent);

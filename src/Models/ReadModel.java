@@ -11,8 +11,7 @@ public class ReadModel implements Command {
     }
     
     public void execute() {
-        ReadCommand command = new ReadCommand();
-        String filepath = commandArgs[0];
-        command.execute(filepath);
+        ReadCommand command = new ReadCommand(commandArgs);
+        command.execute();
     }
 }
