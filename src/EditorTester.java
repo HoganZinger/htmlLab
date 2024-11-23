@@ -11,7 +11,7 @@ public class EditorTester {
     @BeforeEach
     public void setUp() throws IOException {
         // 启动编辑器进程
-        ProcessBuilder processBuilder = new ProcessBuilder("java", "-cp", "out/production/lab", "Main");
+        ProcessBuilder processBuilder = new ProcessBuilder("java", "-cp", "out/production/htmlLab", "Main");
         processBuilder.redirectErrorStream(true); // 将标准错误合并到标准输出
         editorProcess = processBuilder.start();
     }
@@ -42,6 +42,38 @@ public class EditorTester {
         sendCommand("print-tree");
         String output = getOutput();
         assertTrue(output.contains("<div id=1>Hello World</div>"), "插入失败");
+    }
+
+    @Test
+    public void testPrintIndentCommand() throws IOException, InterruptedException {
+        // 初始化编辑器
+        sendCommand("init");
+        Thread.sleep(500);
+
+        // 发送 print-indent 命令
+        sendCommand("print-indent 2");
+        Thread.sleep(500);
+        String output = getOutput();
+        System.out.println("Print Indent Output: " + output);
+
+        // 验证输出是否符合预期
+        assertTrue(output.contains("<html id=\"root\">"), "Print Indent 输出不正确");
+    }
+
+    @Test
+    public void testPrintTreeCommand() throws IOException, InterruptedException {
+        // 初始化编辑器
+        sendCommand("init");
+        Thread.sleep(500);
+
+        // 发送 print-tree 命令
+        sendCommand("print-tree");
+        Thread.sleep(500);
+        String output = getOutput();
+        System.out.println("Print Tree Output: " + output);
+
+        // 验证输出是否符合预期
+        assertTrue(output.contains("html#root"), "Print Tree 输出不正确");
     }
 
     @AfterEach
