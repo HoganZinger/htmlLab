@@ -13,7 +13,7 @@ public class CommandAnalyzer {
                 isInitialized = true;
                 yield input;
             }
-            case "insert", "append", "edit-text", "delete", "print-indent", "print-tree", "save", "undo", "redo" -> {
+            case "test", "insert", "append", "edit-text", "delete", "print-indent", "print-tree", "save", "undo", "redo" -> {
                 if (Objects.equals(HtmlId, "empty")){
                     isInitialized = false;
                 }

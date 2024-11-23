@@ -16,6 +16,19 @@ public class HtmlElement {
         this.children = new ArrayList<>();
     }
 
+    // 一些必要的getter方法
+    public String getTagName() {
+        return tagName;
+    }
+
+    public String getTextContent() {
+        return textContent;
+    }
+
+    public List<HtmlElement> getChildren() {
+        return new ArrayList<>(children);
+    }
+
     public void addChild(HtmlElement child) {
         children.add(child);
     }

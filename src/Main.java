@@ -25,7 +25,7 @@ public class Main {
             }
             if (command.equals("get-context")) {
                 System.out.println(HtmlContext.getInstance().getHtmlContent());
-                break;
+                continue;
             }
 
             commandCaller.executeCommand(commandAnalyzer.createCommand(command));

@@ -27,3 +27,79 @@
 所以我的编译文件夹out放在lab文件夹下
 ![img.png](img.png)
 ![img_1.png](img_1.png)
+
+
+
+## 4. 关于Undo/Redo命令的说明
+
+由于`Command`接口中只定义了`excute()`方法而没有定义`undo()`方法，因此本项目使用基于快照（Snapshot）的方式实现了撤销和重做功能。主要通过以下几个核心组件实现：
+
+### 1. 状态历史管理器（`HtmlHistory`）
+
+```java
+public class HtmlHistory {
+    private static HtmlHistory instance;
+    private Stack<HtmlElement> undoStack;
+    private Stack<HtmlElement> redoStack;
+
+	// ....省略具体实现
+    }
+
+```
+
+- 使用两个栈分别存储撤销历史（undoStack）和重做历史（redoStack）
+- 采用单例模式确保全局唯一的历史记录
+- 通过深拷贝（deepClone）确保状态快照的独立性
+
+
+
+### 2. 状态保存装饰器（StateSavingCommandDecorator）
+
+```java
+public class StateSavingCommandDecorator implements Command {
+    private final Command command;
+
+    public StateSavingCommandDecorator(Command command) {
+        this.command = command;
+    }
+
+    @Override
+    public void execute() {
+        // 保存状态用于撤销
+        HtmlHistory.getInstance().saveState();
+
+        command.execute();
+    }
+;}
+
+```
+
+- 使用装饰器模式为命令添加状态保存功能
+- 在命令执行前保存当前状态
+- 自动清理重做栈，确保命令执行后的状态一致性
+
+
+
+### 3. 修改命令工厂（CommandFactory）
+
+```java
+public class CommandFactory {
+    public static Command createCommand(String commandType, String[] commandArgs){
+        switch(commandType){
+            case "init":
+                return new InitModel();
+            case "undo":
+                return new UndoCommand();
+            case "redo":
+                return new RedoCommand();
+            case "test":
+                return new StateSavingCommandDecorator(new TestCommand(commandArgs));
+            default:
+                return null;
+        }
+    }
+
+```
+
+- 使用工厂模式创建命令对象
+- **为需要保存状态的命令添加装饰器**
