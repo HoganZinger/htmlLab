@@ -6,8 +6,8 @@ import Utils.HtmlElement;
 public class PrintIndentCommand implements Command {
 
     @Override
-    public void execute(){
-        execute(2);   //默认缩进2
+    public void execute() {
+        execute(2);   // 默认缩进2
     }
 
     public void execute(int indent) {

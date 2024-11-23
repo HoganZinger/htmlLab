@@ -10,7 +10,7 @@ public class CommandFactory {
             case "print-tree":
                 return new PrintTreeModel();
             case "print-indent":
-                return new PrintIndentModel();
+                return new PrintIndentModel(commandArgs);
             default:
                 return null;
         }
