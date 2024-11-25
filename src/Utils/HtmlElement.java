@@ -9,6 +9,8 @@ public class HtmlElement {
     private String textContent;
     private List<HtmlElement> children;
 
+    private HtmlElement parent;
+
     public HtmlElement(String tagName, String id, String textContent) {
         this.tagName = tagName;
         this.id = id;
@@ -26,15 +28,21 @@ public class HtmlElement {
     }
 
     public List<HtmlElement> getChildren() {
-        return new ArrayList<>(children);
+        return children;
     }
+
+    public void setParent(HtmlElement parent) { this.parent = parent; }
+
+    public HtmlElement getParent() { return parent; }
 
     public void addChild(HtmlElement child) {
         children.add(child);
+        child.setParent(this);
     }
 
     public void removeChild(HtmlElement child) {
         children.remove(child);
+        child.setParent(null);
     }
 
     public void setId(String id) {

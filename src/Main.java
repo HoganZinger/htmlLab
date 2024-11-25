@@ -24,7 +24,7 @@ public class Main {
                 break;
             }
             if (command.equals("get-context")) {
-                System.out.println(HtmlContext.getInstance().getHtmlContent());
+                System.out.println(HtmlContext.getInstance().getHtmlContent().toString());
                 continue;
             }
 
