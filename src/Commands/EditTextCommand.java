@@ -23,6 +23,7 @@ public class EditTextCommand implements Command{
 
         oldText = element.getTextContent();
         element.setText(newText);
+        HtmlContext.getInstance().updateElementText();
     }
 
 }

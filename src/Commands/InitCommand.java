@@ -9,9 +9,9 @@ public class InitCommand implements Command {
     public void execute() {
         HtmlContext htmlContext = HtmlContext.getInstance();
         if (Objects.equals(htmlContext.getHtmlContent().getId(), "empty")){
-            htmlContext.setHtmlContent(initializeEditor());
             System.out.println("initialized html root");
-            System.out.println(htmlContext.getHtmlContent().toString());
+            htmlContext.setHtmlContent(initializeEditor());
+//            System.out.println(htmlContext.getHtmlContent().toString());
             System.out.flush();
         }
         else{

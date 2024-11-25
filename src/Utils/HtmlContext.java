@@ -1,6 +1,8 @@
 package Utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class HtmlContext {
@@ -14,6 +16,8 @@ public class HtmlContext {
      */
     private Map<String, HtmlElement> idMap;
 
+    private List<HtmlChangeListener> listeners = new ArrayList<>();
+
     private HtmlContext() {
         this.htmlContent = new HtmlElement(null, "empty", null);
         this.idMap = new HashMap<>();
@@ -26,6 +30,19 @@ public class HtmlContext {
     public void setHtmlContent(HtmlElement content) {
         this.htmlContent = content;
         rebuildIdMap();
+        notifyChanged();
+    }
+
+    // 添加监听器方法
+    public void addChangeListener(HtmlChangeListener listener) {
+        listeners.add(listener);
+    }
+
+    // 触发文档变更通知
+    private void notifyChanged() {
+        for (HtmlChangeListener listener : listeners) {
+            listener.update();
+        }
     }
 
     private void rebuildIdMap() {
@@ -53,6 +70,7 @@ public class HtmlContext {
         }
 
         idMap.put(element.getId(), element);
+        notifyChanged();
     }
 
     public void removeFromIdMap(HtmlElement element) {
@@ -64,6 +82,7 @@ public class HtmlContext {
         for (HtmlElement child : element.getChildren()) {
             removeFromIdMap(child);
         }
+        notifyChanged();
     }
 
     public void updateElementId(HtmlElement element, String oldId, String newId) {
@@ -71,6 +90,12 @@ public class HtmlContext {
 
         idMap.remove(oldId);
         idMap.put(newId, element);
+
+        notifyChanged();
+    }
+
+    public void updateElementText(){
+        notifyChanged();
     }
 
     // 验证ID是否唯一
