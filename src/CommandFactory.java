@@ -23,15 +23,15 @@ public class CommandFactory {
             case "print-indent":
                 return new PrintIndentModel(commandArgs);
             case "insert":
-                return new InsertModel(commandArgs);
+                return new StateSavingCommandDecorator(new InsertModel(commandArgs));
             case "append":
-                return new AppendModel(commandArgs);
+                return new StateSavingCommandDecorator(new AppendModel(commandArgs));
             case "edit-id":
-                return new EditIdModel(commandArgs);
+                return new StateSavingCommandDecorator(new EditIdModel(commandArgs));
             case "edit-text":
-                return new EditTextModel(commandArgs);
+                return new StateSavingCommandDecorator(new EditTextModel(commandArgs));
             case "delete":
-                return new DeleteModel(commandArgs);
+                return new StateSavingCommandDecorator(new DeleteModel(commandArgs));
 
             default:
                 return null;
