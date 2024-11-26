@@ -16,12 +16,13 @@ public class SaveCommand implements Command {
     @Override
     public void execute() {
 
-        if(filepath.length < 1) {
-            System.out.println("Empty path!");
+        if(filepath == null || filepath.length < 1 || filepath[0].trim().isEmpty()) {
+            System.out.println("Error: File path is empty or invalid!");
+            return;
         }
 
         String fileName = filepath[0];
-        String htmlcontent = HtmlContext.getInstance().getHtmlContent().getTextContent();
+        String htmlcontent = HtmlContext.getInstance().getHtmlContent().toHtml();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             writer.write(htmlcontent);

@@ -20,7 +20,7 @@ public class ReadCommand implements Command {
 
     public void execute() {
         if (filepath.length < 1) {
-            System.out.println("wrong filepath");
+            System.out.println("Error: filepath is empty");
             return;
         }
 
@@ -151,8 +151,8 @@ public class ReadCommand implements Command {
         int openCount = 1;
         int currentIndex = fromIndex;
 
-        while (currentIndex > 0) {
-            int nextOpen = content.indexOf(closeTag, currentIndex);
+        while (openCount > 0) {
+            int nextOpen = content.indexOf(openTag, currentIndex);
             int nextClose = content.indexOf(closeTag, currentIndex);
 
             if(nextClose == -1) {
