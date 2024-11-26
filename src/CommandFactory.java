@@ -1,10 +1,4 @@
-import Commands.Command;
-import Commands.RedoCommand;
-import Commands.TestCommand;
-import Commands.UndoCommand;
-import Commands.ReadCommand;
-import Commands.SaveCommand;
-import Commands.PrintTreeCommand;
+import Commands.*;
 
 import Models.*;
 import Utils.StateSavingCommandDecorator;
@@ -28,6 +22,17 @@ public class CommandFactory {
                 return new PrintTreeModel();
             case "print-indent":
                 return new PrintIndentModel(commandArgs);
+            case "insert":
+                return new StateSavingCommandDecorator(new InsertModel(commandArgs));
+            case "append":
+                return new StateSavingCommandDecorator(new AppendModel(commandArgs));
+            case "edit-id":
+                return new StateSavingCommandDecorator(new EditIdModel(commandArgs));
+            case "edit-text":
+                return new StateSavingCommandDecorator(new EditTextModel(commandArgs));
+            case "delete":
+                return new StateSavingCommandDecorator(new DeleteModel(commandArgs));
+
             default:
                 return null;
         }

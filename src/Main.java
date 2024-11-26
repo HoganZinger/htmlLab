@@ -1,4 +1,6 @@
 import java.util.Scanner;
+
+import Utils.AutoPrintListener;
 import Utils.HtmlContext;
 
 public class Main {
@@ -14,6 +16,7 @@ public class Main {
         System.out.println("Use 'init' to get an empty template or 'read filepath' to get an existing one");
         CommandCaller commandCaller = new CommandCaller();
         CommandAnalyzer commandAnalyzer = new CommandAnalyzer();
+        AutoPrintListener autoPrintIndent = new AutoPrintListener();
 
         while (true) {
             System.out.print("> ");
@@ -24,7 +27,7 @@ public class Main {
                 break;
             }
             if (command.equals("get-context")) {
-                System.out.println(HtmlContext.getInstance().getHtmlContent());
+                System.out.println(HtmlContext.getInstance().getHtmlContent().toString());
                 continue;
             }
 

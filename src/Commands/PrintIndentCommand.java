@@ -20,7 +20,7 @@ public class PrintIndentCommand implements Command {
 
         // 打印缩进
         for (int i = 0; i < level * indent; i++) {
-            System.out.print("  ");
+            System.out.print(" ");
         }
 
         // 获取ID属性
@@ -42,8 +42,8 @@ public class PrintIndentCommand implements Command {
             }
 
             // 打印结束标签
-            for (int i = 0; i < level; i++) {
-                System.out.print("  ");
+            for (int i = 0; i < level * indent; i++) {
+                System.out.print(" ");
             }
             System.out.println("</" + element.getTagName() + ">");
         }
