@@ -13,9 +13,9 @@ public class CommandFactory {
             case "redo":
                 return new RedoCommand();
             case "read":
-                return new ReadCommand(commandArgs);
+                return new ReadModel(commandArgs);
             case "save":
-                return new SaveCommand(commandArgs);
+                return new SaveModel(commandArgs);
             case "test":
                 return new StateSavingCommandDecorator(new TestCommand(commandArgs));
             case "print-tree":
